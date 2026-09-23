@@ -2,7 +2,6 @@
 import { useRoute, useRouter } from 'vue-router'
 import { openCatalog } from '../catalog.js'
 import { families, productsInFamily, allProducts } from '../data/products.js'
-import ProductIcon from '../components/ProductIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -12,42 +11,44 @@ const router = useRouter()
   <main>
     <section class="hero-shell">
       <div class="hero page-width">
-        <p class="eyebrow">Enterprise Digital Management Applications</p>
-        <h1>面向企业<br>数字化管理的<span>应用家族</span></h1>
-        <p class="hero-lede">
-          一个平台连接客户、产品、制造、供应链与经营决策。23 款应用既能独立上线，也能沿真实业务链路组合生长。
-        </p>
-        <div class="hero-actions">
-          <button class="btn btn-fill" type="button" @click="openCatalog(router, route)">浏览产品目录</button>
-          <router-link class="btn btn-ghost" to="/demo">预约演示</router-link>
+        <div class="hero-copy">
+          <p class="eyebrow">EDMA · {{ allProducts.length }} 款应用</p>
+          <h1>面向企业<br>数字化管理的<span>应用家族</span></h1>
+          <p class="hero-lede">
+            一个平台连接客户、产品、制造、供应链与经营决策。23 款应用既能独立上线，也能沿真实业务链路组合生长。
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-fill" type="button" @click="openCatalog(router, route)">浏览产品目录</button>
+            <router-link class="btn btn-ghost" to="/demo">预约演示</router-link>
+          </div>
         </div>
-        <dl class="hero-facts">
-          <div><dt>业务应用</dt><dd>{{ allProducts.length }}</dd></div>
-          <div><dt>产品套件</dt><dd>{{ families.length }}</dd></div>
-        </dl>
+        <ol class="contents">
+          <li v-for="(family, index) in families" :key="family.id">
+            <a :href="`#${family.id}`">
+              <b>{{ String(index + 1).padStart(2, '0') }}</b>
+              <span>{{ family.title }}</span>
+              <em>{{ productsInFamily(family.id).length }}</em>
+            </a>
+          </li>
+        </ol>
       </div>
     </section>
 
     <section id="catalog" class="catalog">
-      <nav class="catalog-rail page-width" aria-label="产品套件">
-        <a v-for="(family, index) in families" :key="family.id" :href="`#${family.id}`">
-          {{ String(index + 1).padStart(2, '0') }} {{ family.title }}
-        </a>
-      </nav>
-
       <section v-for="(family, familyIndex) in families" :id="family.id" :key="family.id" class="family page-width" :class="`family--${family.id}`">
         <header class="section-head suite-chapter">
-          <span>套件 {{ String(familyIndex + 1).padStart(2, '0') }}</span>
-          <h2>{{ family.title }}</h2>
-          <p>{{ family.summary }}</p>
+          <span>{{ String(familyIndex + 1).padStart(2, '0') }}</span>
+          <div>
+            <h2>{{ family.title }}</h2>
+            <p>{{ family.summary }}</p>
+          </div>
         </header>
-        <div class="product-index">
-          <router-link v-for="item in productsInFamily(family.id)" :key="item.slug" class="product-row" :to="`/products/${item.slug}`">
-            <ProductIcon :code="item.code" :slug="item.slug" :family="family.id" size="sm" />
+        <div class="ledger-grid">
+          <router-link v-for="item in productsInFamily(family.id)" :key="item.slug" class="ledger-card" :to="`/products/${item.slug}`">
             <b>{{ item.code }}</b>
             <strong>{{ item.name }}</strong>
-            <span class="row-line">{{ item.tagline }}</span>
-            <em>查看</em>
+            <span>{{ item.tagline }}</span>
+            <small>{{ item.modules.slice(0, 3).map((module) => module.name).join(' / ') }}</small>
           </router-link>
         </div>
       </section>

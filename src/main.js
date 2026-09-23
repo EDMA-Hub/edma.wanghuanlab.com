@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import './styles.css'
-import './press.css'
+import './ledger.css'
 import App from './App.vue'
 import router from './router.js'
 

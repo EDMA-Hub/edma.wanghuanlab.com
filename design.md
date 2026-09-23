@@ -13,7 +13,7 @@ modern-minimal
 - Content pages: Long Document
 
 ## Theme
-Press, on branch `design/v2-press`. Warm black, Instrument Serif display, copper accent, specification rows. Folio remains on `design/v1-folio`. Overrides live in `src/press.css`.
+Ledger, on branch `design/v3-ledger`. Cool gray paper, DM Mono codes, forest-green rules, two-column product cards and a contents hero. Folio is `design/v1-folio`. Press is `design/v2-press`. Overrides live in `src/ledger.css`.
 
 - Background: deep navy `#0B0F1A` equivalent in OKLCH
 - Surface: raised navy `#151A2B` equivalent in OKLCH
