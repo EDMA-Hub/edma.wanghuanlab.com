@@ -3,6 +3,8 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { familyById, products, relatedProducts } from '../data/products.js'
 import DemoForm from '../components/DemoForm.vue'
+import ProductIcon from '../components/ProductIcon.vue'
+import ProductPreview from '../components/ProductPreview.vue'
 
 const route = useRoute()
 const product = computed(() => products[route.params.slug])
@@ -13,13 +15,16 @@ const related = computed(() => product.value ? relatedProducts(product.value.slu
 <template>
   <main v-if="product" class="product-page">
     <section class="product-hero page-width">
-      <nav class="crumbs" aria-label="面包屑">
+      <div class="product-hero-copy">
+        <nav class="crumbs" aria-label="面包屑">
         <router-link to="/">首页</router-link>
         <router-link :to="{ path: '/', hash: '#catalog' }">产品目录</router-link>
         <span>{{ product.code }}</span>
       </nav>
-      <p class="card-code">{{ product.code }} · {{ family.title }}</p>
-      <h1>{{ product.fullName }}</h1>
+      <div class="product-title-lockup">
+        <ProductIcon :code="product.code" :slug="product.slug" :family="family.id" size="xl" />
+        <div><p class="card-code">{{ product.code }} · {{ family.title }}</p><h1>{{ product.fullName }}</h1></div>
+      </div>
       <p class="lede">{{ product.tagline }}</p>
       <p>{{ product.summary }}</p>
       <p class="audience">适用：{{ product.audience }}</p>
@@ -27,6 +32,8 @@ const related = computed(() => product.value ? relatedProducts(product.value.slu
         <a class="btn btn-fill" href="#book">预约 {{ product.code }} 演示</a>
         <router-link class="btn btn-ghost" :to="{ path: '/', hash: '#catalog' }">返回目录</router-link>
       </div>
+      </div>
+      <ProductPreview :product="product" :family="family" />
     </section>
 
     <section class="modules page-width">
@@ -51,6 +58,7 @@ const related = computed(() => product.value ? relatedProducts(product.value.slu
       <h2>相关产品</h2>
       <div class="related-grid">
         <router-link v-for="item in related" :key="item.slug" :to="`/products/${item.slug}`">
+          <ProductIcon :code="item.code" :slug="item.slug" :family="item.family" size="sm" />
           <b>{{ item.code }}</b>
           <span>{{ item.name }}</span>
           <small>{{ item.tagline }}</small>

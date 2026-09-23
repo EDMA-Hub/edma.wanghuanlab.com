@@ -8,12 +8,19 @@ system needs to grow.
 modern-minimal
 
 ## Macrostructure family
-- Marketing pages: Catalogue (product family index, card grid, search)
+- Marketing pages: Catalogue (five-suite index, 23-application card grid, search)
 - Product pages: Long Document (overview, modules, capabilities, related)
 - Content pages: Long Document
 
 ## Theme
-Slate. Cool institutional ink with a restrained teal accent. Tokens live in `tokens.css`. Do not swap theme per page.
+Folio, on branch `design/v1-folio`. A warm paper catalog: stone background, ink type, one deep indigo accent. Suite stills live in `public/assets/folio-*.png`. Tokens live in `tokens.css`. Visual overrides live in `src/folio.css` and load after `styles.css`.
+
+- Background: deep navy `#0B0F1A` equivalent in OKLCH
+- Surface: raised navy `#151A2B` equivalent in OKLCH
+- Primary: indigo `#6366F1` equivalent in OKLCH
+- Signal: cyan `#22D3EE` equivalent in OKLCH
+- Primary text: `#F1F5F9` equivalent in OKLCH
+- Secondary text: `#94A3B8` equivalent in OKLCH
 
 ## Typography
 - Display / Body: Geist
@@ -26,6 +33,9 @@ Slate. Cool institutional ink with a restrained teal accent. Tokens live in `tok
 ## Motion
 - Easings: `--ease-out`, `--ease-in`, `--ease-in-out`
 - Product menu is a floating panel: fade, rise, and slight scale. Family columns stagger on enter.
+- Home hero uses a static grid with two slow indigo and cyan light orbs over a generated enterprise topology visual. Particle networks are not used.
+- Product and section entrances use opacity + 16 px rise with scroll-driven progressive enhancement.
+- Reduced motion removes spatial animation and keeps content immediately visible.
 - Catalog navigation scrolls to `#catalog` on the home page. No separate catalog route.
 - Reduced-motion: opacity-only, ≤ 150 ms
 
@@ -39,7 +49,11 @@ Slate. Cool institutional ink with a restrained teal accent. Tokens live in `tok
 - Secondary: outline pill, copy `查看产品`
 
 ## What pages MUST share
-- Wordmark EDMA, Slate accent, Geist, pill CTAs, sticky search nav
+- Wordmark EDMA, Nocturne canvas, Geist, pill CTAs, sticky search nav.
+- Every product uses its own 24 × 24 geometric icon on a shared rounded tile. The first shape carries a 16% fill; suites keep a stable hue: customer cyan, manufacturing indigo, supply blue, management slate, platform violet. Channel DMS and document EDMS stay distinct marks.
+- Product screenshots, when replaced, are 3:2. Display size 1200 × 800. Source file 2400 × 1600.
+- Glass is reserved for navigation, hero status surfaces, and overlays. Product cards use solid elevated surfaces.
 
 ## What pages MAY differ on
-- Home is a catalogue of families. Product pages are long-form capability docs.
+- Home is a catalogue of five product suites. Product pages are long-form capability docs.
+- Marketing surfaces may use a generated or hand-built topology visual. Product pages use a deterministic 3:2 visual placeholder until real screenshots are available.

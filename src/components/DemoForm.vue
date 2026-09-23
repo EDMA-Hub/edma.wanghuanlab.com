@@ -55,7 +55,7 @@ const submit = async () => {
     <template v-else>
       <fieldset v-if="picker" class="pick-set">
         <legend>关注的产品 <em>{{ selected.length ? `已选 ${selected.length}` : '至少一款' }}</em></legend>
-        <div class="pick-families" role="tablist" aria-label="产品家族">
+        <div class="pick-families" role="tablist" aria-label="产品套件">
           <button
             v-for="family in families"
             :key="family.id"

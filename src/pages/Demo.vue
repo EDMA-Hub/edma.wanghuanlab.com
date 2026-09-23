@@ -12,7 +12,7 @@ import DemoForm from '../components/DemoForm.vue'
         <ol class="demo-steps">
           <li>
             <strong>选择产品</strong>
-            <span>可跨家族多选。两个 DMS 分别是渠道协同和文档受控。</span>
+            <span>可跨套件多选。渠道 DMS 与企业文档 EDMS 分别处理渠道协同和受控文档。</span>
           </li>
           <li>
             <strong>留下联系方式</strong>

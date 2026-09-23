@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { openCatalog } from '../catalog.js'
 import { families, productsInFamily, searchProducts } from '../data/products.js'
+import ProductIcon from './ProductIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -145,6 +146,7 @@ onBeforeUnmount(() => {
         <section v-for="family in families" :key="family.id">
           <h2>{{ family.title }}</h2>
           <router-link v-for="item in productsInFamily(family.id)" :key="item.slug" :to="`/products/${item.slug}`">
+            <ProductIcon :code="item.code" :slug="item.slug" :family="family.id" size="xs" />
             <b>{{ item.code }}</b>
             <span>{{ item.name }}</span>
           </router-link>
@@ -169,6 +171,7 @@ onBeforeUnmount(() => {
             :class="{ active: index === activeIndex }"
             @click="goToProduct(item)"
           >
+            <ProductIcon :code="item.code" :slug="item.slug" :family="item.family" size="xs" />
             <b>{{ item.code }}</b>
             <span>{{ item.name }}</span>
             <small>{{ item.fullName }}</small>
