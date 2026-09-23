@@ -13,7 +13,7 @@ modern-minimal
 - Content pages: Long Document
 
 ## Theme
-Folio, on branch `design/v1-folio`. A warm paper catalog: stone background, ink type, one deep indigo accent. Suite stills live in `public/assets/folio-*.png`. Tokens live in `tokens.css`. Visual overrides live in `src/folio.css` and load after `styles.css`.
+Press, on branch `design/v2-press`. Warm black, Instrument Serif display, copper accent, specification rows. Folio remains on `design/v1-folio`. Overrides live in `src/press.css`.
 
 - Background: deep navy `#0B0F1A` equivalent in OKLCH
 - Surface: raised navy `#151A2B` equivalent in OKLCH
